@@ -34,6 +34,7 @@ h1 {
   border-color: #EC8C39;
   border-radius: 5px;
   border-width: 2px;
+ 
   width: 12rem;
 }
 .filter-container label,
@@ -125,7 +126,14 @@ h1 {
   background-color:#c0691c;
 
 }
-
+.notes_not_found{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(87, 97, 97);
+  font-size: x-large;
+  font-weight: bolder;
+}
 @media (max-width: 768px) {
  
   h1 {
@@ -134,11 +142,12 @@ h1 {
   }
 
   .filter-container {
-    /* flex-direction: column Stack items vertically for smaller screens */
     align-items: stretch; /* Stretch items to full width for smaller screens */
-    font-size: 1.2rem; /* Adjust font size for smaller screens */
-    margin: 1rem 4rem;/* Adjust margin for smaller screens */
-    
+    font-size: 1.3rem; /* Adjust font size for smaller screens */
+   padding-bottom: 2rem;
+  }
+  .search-container {
+    margin-bottom: 0px; /* Adjust margin between containers for smaller screens */
   }
 
  

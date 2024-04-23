@@ -1,22 +1,21 @@
 import { useState } from "react";
 import Card from "./Card";
 import "./index.css";
+import Shimmer from "./Shimmer";
 // import MenuData from "./SubjectsApi";
 
-
-const NotesPage = ({MenuData}) => {
+const NotesPage = ({ MenuData }) => {
   // console.log(MenuData);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedSemester, setSelectedSemester] = useState("");
-
 
   // console.log(MenuData);
   // Assuming you have cardData defined somewhere
   const filteredCardData = MenuData.filter((card) => {
     // Filter based on selected branch
-    return selectedCategory === "" ? card: card.branch === selectedCategory;
-  })
-  const filterData=filteredCardData.filter((card) => {
+    return selectedCategory === "" ? card : card.branch === selectedCategory;
+  });
+  const filterData = filteredCardData.filter((card) => {
     // Filter based on selected semester
     return selectedSemester === "" ? card : card.semester === selectedSemester;
   });
@@ -27,8 +26,9 @@ const NotesPage = ({MenuData}) => {
       <div className="container">
         <div className="filter-container">
           <div className="search-container">
-            <label htmlFor="subject-search"></label>
-            <select className="input_select"
+            {/* <label htmlFor="subject-search"></label> */}
+            <select
+              className="input_select"
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}>
               <option value="">Select Branch</option>
@@ -47,7 +47,7 @@ const NotesPage = ({MenuData}) => {
             </select>
           </div>
           <div className="search-container">
-            <label htmlFor="subject-search"></label>
+            {/* <label htmlFor="subject-search"></label> */}
             <select
               className="input_select"
               value={selectedSemester}
@@ -65,11 +65,28 @@ const NotesPage = ({MenuData}) => {
             </select>
           </div>
         </div>
-        <div className="whole">
-          {filterData.map((card,index) => (
-            <Card key={index} data={card} />
-          ))}
-        </div>
+
+        {MenuData.length !== 0 && filterData.length === 0 ? (
+          <div className="notes_not_found">Sorry! Notes Not Found</div>
+        ) : (
+          <div className="whole">
+            {MenuData.length === 0 ? (
+              <>
+                <Shimmer />
+                <Shimmer />
+                <Shimmer />
+                <Shimmer />
+                <Shimmer />
+                <Shimmer />
+                <Shimmer />
+                <Shimmer />
+                <Shimmer />
+              </>
+            ) : (
+              filterData.map((card, index) => <Card key={index} data={card} />)
+            )}
+          </div>
+        )}
       </div>
     </>
   );

@@ -1,6 +1,7 @@
 const Card = ({data}) => {
   
-  console.log(data);
+  
+
   return (
     <>
       <div className="card" id="outline">
